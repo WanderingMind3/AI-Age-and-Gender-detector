@@ -89,6 +89,3 @@ cv2.destroyAllWindows()
 
 
 
-
-# created by abhishek srivastava
-
