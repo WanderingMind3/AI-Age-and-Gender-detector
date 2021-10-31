@@ -33,13 +33,6 @@ while True:
    
     coord = face_data.detectMultiScale(frame)  
     
-
-    for [x, y, w, h,] in coord:
-        cv2.rectangle(frame, (x, y), (x+w , y+h), (randrange(255), randrange(255), randrange(255)), 4)
-        data = (x, y)
-        cv2.putText(frame, f'{gender}, {age}', data, cv2.FONT_HERSHEY_SIMPLEX, 0.8, color, 2, cv2.LINE_AA)
-
-
     blob=cv2.dnn.blobFromImage(frame, 1.0, (227,227), MODEL_MEAN_VALUES, swapRB=False)
     
     genderNet.setInput(blob)
@@ -57,8 +50,16 @@ while True:
 
     color = (randrange(255), randrange(255), randrange(255))
     
+
+    for [x, y, w, h,] in coord:
+        cv2.rectangle(frame, (x, y), (x+w , y+h), (randrange(255), randrange(255), randrange(255)), 4)
+        data = (x, y)
+        cv2.putText(frame, f'{gender}, {age}', data, cv2.FONT_HERSHEY_SIMPLEX, 0.8, color, 2, cv2.LINE_AA)
+
+
     
-    cv2.imshow('Clever Programmer Face Detector', frame)
+    
+    cv2.imshow('Face Detector', frame)
     k=cv2.waitKey(1)
 
     if k == ord('q'):
